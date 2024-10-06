@@ -1,1 +1,3 @@
 # vscode-buck2
+
+This extension, together with the [buck2 feature](https://github.com/lot49-cybernetics/devcontainer-features/src/buck2), lets you use Facebook's [Buck2](https://buck2.build) in the latest versions of VS Code. It upgrades the [Starlark LSP](https://github.com/facebook/starlark-rust/tree/main/vscode), which is not actively maintained or available in the Marketplace at this time. It is not at all complete and you probably will still need to do a lot from the command-line, but it lets you edit BUCK and BZL files with basic syntax highlighting to start. If there is community interest we will add more.
