@@ -1,7 +1,20 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#201F7A",
-        "titleBar.activeBackground": "#2C2BAB",
-        "titleBar.activeForeground": "#FBFBFE"
-    }
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+  "prettier.configPath": ".github/linters/.prettierrc",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#201F7A",
+    "titleBar.activeBackground": "#2C2BAB",
+    "titleBar.activeForeground": "#FBFBFE"
+  }
 }

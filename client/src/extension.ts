@@ -17,40 +17,42 @@
  * limitations under the License.
  */
 
-import { ExtensionContext } from 'vscode';
-import * as vscode from 'vscode';
+import { ExtensionContext } from "vscode";
+import * as vscode from "vscode";
 import {
-	LanguageClient,
-	LanguageClientOptions,
-	ServerOptions
-} from 'vscode-languageclient/node';
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+} from "vscode-languageclient/node";
 
 let client: LanguageClient;
 
 interface AdditionalClientSettings {
-    enable_goto_definition: boolean;
+  enable_goto_definition: boolean;
 }
 
 /// Get a setting at the path, or throw an error if it's not set.
 function requireSetting<T>(path: string): T {
-    const ret: T = vscode.workspace.getConfiguration().get(path);
-    if (ret == undefined) {
-        throw new Error(`Setting "${path}" was not configured`)
-    }
-    return ret;
+  const ret: T = vscode.workspace.getConfiguration().get(path);
+  if (ret == undefined) {
+    throw new Error(`Setting "${path}" was not configured`);
+  }
+  return ret;
 }
 
 function additionalClientSettings(): AdditionalClientSettings {
-    return {
-        enable_goto_definition: vscode.workspace.getConfiguration().get("starlark.enableGotoDefinition", true),
-    };
+  return {
+    enable_goto_definition: vscode.workspace
+      .getConfiguration()
+      .get("starlark.enableGotoDefinition", true),
+  };
 }
 
-const STARLARK_FILE_CONTENTS_METHOD = 'starlark/fileContents';
-const STARLARK_URI_SCHEME = 'starlark';
+const STARLARK_FILE_CONTENTS_METHOD = "starlark/fileContents";
+const STARLARK_URI_SCHEME = "starlark";
 
 class StarlarkFileContentsParams {
-  constructor(public uri: String) {}
+  constructor(public uri: string) {}
 }
 
 class StarlarkFileContentsResponse {
@@ -61,7 +63,8 @@ class StarlarkFileContentsResponse {
 class StarlarkFileHandler implements vscode.TextDocumentContentProvider {
   provideTextDocumentContent(
     uri: vscode.Uri,
-    _token: vscode.CancellationToken,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _token: vscode.CancellationToken
   ): vscode.ProviderResult<string> {
     if (client === undefined) {
       return null;
@@ -69,7 +72,7 @@ class StarlarkFileHandler implements vscode.TextDocumentContentProvider {
       return client
         .sendRequest<StarlarkFileContentsResponse>(
           STARLARK_FILE_CONTENTS_METHOD,
-          new StarlarkFileContentsParams(uri.toString()),
+          new StarlarkFileContentsParams(uri.toString())
         )
         .then((response: StarlarkFileContentsResponse) => {
           if (response.contents !== undefined && response.contents !== null) {
@@ -82,42 +85,43 @@ class StarlarkFileHandler implements vscode.TextDocumentContentProvider {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function activate(context: ExtensionContext) {
-    // Make sure that any starlark: URIs that come back from the LSP
-    // are handled, and requested from the LSP.
-    vscode.workspace.registerTextDocumentContentProvider(
-        STARLARK_URI_SCHEME,
-        new StarlarkFileHandler(),
-    );
+  // Make sure that any starlark: URIs that come back from the LSP
+  // are handled, and requested from the LSP.
+  vscode.workspace.registerTextDocumentContentProvider(
+    STARLARK_URI_SCHEME,
+    new StarlarkFileHandler()
+  );
 
-    const path: string = requireSetting("starlark.lspPath");
-    const args: [string] = requireSetting("starlark.lspArguments");
+  const path: string = requireSetting("starlark.lspPath");
+  const args: [string] = requireSetting("starlark.lspArguments");
 
-    // Otherwise to spawn the server
-    let serverOptions: ServerOptions = { command: path, args: args };
+  // Otherwise to spawn the server
+  const serverOptions: ServerOptions = { command: path, args: args };
 
-    // Options to control the language client
-    let clientOptions: LanguageClientOptions = {
-        // Register the server for Starlark documents
-        documentSelector: [{ scheme: 'file', language: 'starlark' }],
-        initializationOptions: additionalClientSettings(),
-    };
+  // Options to control the language client
+  const clientOptions: LanguageClientOptions = {
+    // Register the server for Starlark documents
+    documentSelector: [{ scheme: "file", language: "starlark" }],
+    initializationOptions: additionalClientSettings(),
+  };
 
-    // Create the language client and start the client.
-    client = new LanguageClient(
-        'Starlark',
-        'Starlark language server',
-        serverOptions,
-        clientOptions
-    );
+  // Create the language client and start the client.
+  client = new LanguageClient(
+    "Starlark",
+    "Starlark language server",
+    serverOptions,
+    clientOptions
+  );
 
-    // Start the client. This will also launch the server
-    client.start();
+  // Start the client. This will also launch the server
+  client.start();
 }
 
 export function deactivate(): Thenable<void> | undefined {
-    if (!client) {
-        return undefined;
-    }
-    return client.stop();
+  if (!client) {
+    return undefined;
+  }
+  return client.stop();
 }

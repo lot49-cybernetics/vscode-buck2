@@ -1,23 +1,23 @@
 {
-	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"author": "Lot49 Cybernetics",
-	"license": "Unlicense",
-	"version": "1.0.0",
-	"publisher": "lot49-cybernetics",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/lot49-cybernetics/vscode-buck2"
-	},
-	"engines": {
-		"vscode": "^1.75.0"
-	},
-	"dependencies": {
-		"cd": "^0.3.3",
-		"vscode-languageclient": "^9.0.1"
-	},
-	"devDependencies": {
-		"@types/vscode": "1.94.0",
-		"@vscode/test-electron": "^2.4.1"
-	}
+  "name": "lsp-sample-client",
+  "description": "VSCode part of a language server",
+  "author": "Lot49 Cybernetics",
+  "license": "Unlicense",
+  "version": "1.0.0",
+  "publisher": "lot49-cybernetics",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lot49-cybernetics/vscode-buck2"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "dependencies": {
+    "cd": "^0.3.3",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "1.94.0",
+    "@vscode/test-electron": "^2.4.1"
+  }
 }

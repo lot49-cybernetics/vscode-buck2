@@ -1,57 +1,70 @@
 {
-	"name": "vscode-buck2",
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils:2": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers/features/node:1": {
-			"nodeGypDependencies": true,
-			"installYarnUsingApt": true,
-			"version": "lts",
-			"pnpmVersion": "latest",
-			"nvmVersion": "latest"
-		},
-		"ghcr.io/devcontainers-community/npm-features/typescript:1": {
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers-contrib/features/act:1": {},
-		"ghcr.io/devcontainers-contrib/features/markdownlint-cli2:1": {},
-		"ghcr.io/prulloac/devcontainer-features/pre-commit:1": {}
-	},
-	"customizations": {
-		"vscode": {
-			"settings": {},
-			"extensions": [
-                "adpyke.codesnap",
-				"akamud.vscode-theme-onedark",
-				"bradlc.vscode-tailwindcss",
-				"csstools.postcss",
-				"davidanson.vscode-markdownlint",
-				"dbaeumer.vscode-eslint",
-				"donjayamanne.githistory",
-				"eamodio.gitlens",
-				"esbenp.prettier-vscode",
-				"foxundermoon.shell-format",
-				"github.copilot",
-                "github.remotehub",
-                "github.vscode-github-actions",
-                "github.vscode-pull-request-github",
-				"hediet.vscode-drawio",
-				"lightyen.tailwindcss-intellisense-twin",
-				"meganrogge.template-string-converter",
-				"mads-hartmann.bash-ide-vscode",
-				"narasimapandiyan.jetbrainsmono",
-				"planbcoding.vscode-react-refactor",
-				"saoudrizwan.claude-dev",
-				"shd101wyy.markdown-preview-enhanced",
-                "stuart.unique-window-colors",
-				"styled-components.vscode-styled-components",
-				"usernamehw.errorlens",
-				"vscode-icons-team.vscode-icons",
-                "waderyan.gitblame"
-			]
-		}
-	},
-    "onCreateCommand": "${containerWorkspaceFolder}/.devcontainer/pre-install.sh",
-    "postCreateCommand": "${containerWorkspaceFolder}/.devcontainer/post-install.sh"
+  "name": "vscode-buck2",
+  "image": "mcr.microsoft.com/devcontainers/base:noble",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "installYarnUsingApt": true,
+      "version": "lts",
+      "pnpmVersion": "latest",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers-community/npm-features/typescript:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/act:1": {},
+    "ghcr.io/devcontainers-contrib/features/apt-packages": {
+      "packages": [
+        "dbus",
+        "libglib2.0-0",
+        "libasound2t64",
+        "libatk-bridge2.0-0t64",
+        "libgbm1",
+        "libgtk3.0-cil",
+        "libnss3",
+        "xvfb"
+      ]
+    },
+    "ghcr.io/devcontainers-contrib/features/markdownlint-cli2:1": {},
+    "ghcr.io/prulloac/devcontainer-features/pre-commit:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "adpyke.codesnap",
+        "akamud.vscode-theme-onedark",
+        "bradlc.vscode-tailwindcss",
+        "csstools.postcss",
+        "davidanson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "foxundermoon.shell-format",
+        "github.copilot",
+        "github.remotehub",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "hediet.vscode-drawio",
+        "lightyen.tailwindcss-intellisense-twin",
+        "meganrogge.template-string-converter",
+        "mads-hartmann.bash-ide-vscode",
+        "narasimapandiyan.jetbrainsmono",
+        "planbcoding.vscode-react-refactor",
+        "saoudrizwan.claude-dev",
+        "shd101wyy.markdown-preview-enhanced",
+        "stuart.unique-window-colors",
+        "styled-components.vscode-styled-components",
+        "usernamehw.errorlens",
+        "vitest.explorer",
+        "vscode-icons-team.vscode-icons",
+        "waderyan.gitblame"
+      ]
+    }
+  },
+  "onCreateCommand": "${containerWorkspaceFolder}/.devcontainer/pre-install.sh",
+  "postCreateCommand": "${containerWorkspaceFolder}/.devcontainer/post-install.sh"
 }

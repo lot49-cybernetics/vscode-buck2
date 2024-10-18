@@ -1,65 +1,49 @@
 {
-	"name": "buck2",
-	"description": "Buck2 extension for VS Code with integrated Starlark LSP",
-	"author": "Lot49 Cybernetics",
-	"license": "Unlicense",
-	"version": "1.0.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/lot49-cybernetics/vscode-buck2"
-	},
-	"publisher": "lot49-cybernetics",
-	"categories": [],
-	"keywords": [
-		"multi-root ready"
-	],
-	"engines": {
-		"vscode": "^1.75.0"
-	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
-	"main": "./client/out/extension",
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "Example configuration",
-			"properties": {
-				"languageServerExample.maxNumberOfProblems": {
-					"scope": "resource",
-					"type": "number",
-					"default": 100,
-					"description": "Controls the maximum number of problems produced by the server."
-				},
-				"languageServerExample.trace.server": {
-					"scope": "window",
-					"type": "string",
-					"enum": [
-						"off",
-						"messages",
-						"verbose"
-					],
-					"default": "off",
-					"description": "Traces the communication between VS Code and the language server."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -b",
-		"watch": "tsc -b -w",
-		"lint": "eslint ./client/src --ext .ts,.tsx",
-		"postinstall": "cd client && pnpm install && cd ..",
-		"test": "sh ./scripts/e2e.sh"
-	},
-	"devDependencies": {
-		"@types/mocha": "^10.0.9",
-		"@types/node": "^22",
-		"@typescript-eslint/eslint-plugin": "^8.8.1",
-		"@typescript-eslint/parser": "^8.8.1",
-		"eslint": "^9.12.0",
-		"mocha": "^10.7.3",
-		"typescript": "^5.6.3"
-	}
+  "name": "buck2",
+  "type": "module",
+  "description": "Buck2 extension for VS Code with integrated Starlark LSP",
+  "author": "Lot49 Cybernetics",
+  "license": "Unlicense",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lot49-cybernetics/vscode-buck2"
+  },
+  "publisher": "lot49-cybernetics",
+  "categories": [],
+  "keywords": [
+    "multi-root ready"
+  ],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "activationEvents": [
+    "onLanguage:plaintext"
+  ],
+  "main": "./client/out/extension",
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -b",
+    "watch": "tsc -b -w",
+    "lint": "eslint --config .github/linters/eslint.config.mjs ./client/src",
+    "postinstall": "cd client && pnpm install && cd ..",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^22",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "@vitest/coverage-istanbul": "2.1.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.12.0",
+    "jsdom": "^25.0.1",
+    "mocha": "^10.7.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.8.1",
+    "vitest": "^2.1.2"
+  }
 }
