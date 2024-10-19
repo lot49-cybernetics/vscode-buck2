@@ -1,8 +1,9 @@
 import { defineConfig } from '@vscode/test-cli'
 
 export default defineConfig({
-  files: 'test/**/*.test.ts',
+  files: 'tests/e2e/**/*.test.ts',
   mocha: {
-    ui: 'bdd'
+    ui: 'bdd',
+    preload: 'tsx/cjs'
   },
 })
