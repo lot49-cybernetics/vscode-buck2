@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
+import { suite, suiteTeardown, test } from "mocha";
 
 suite("Extension Test Suite", () => {
   suiteTeardown(() => {

@@ -48,6 +48,9 @@ importers:
       eslint:
         specifier: ^9.12.0
         version: 9.12.0
+      glob:
+        specifier: ^11.0.0
+        version: 11.0.0
       jsdom:
         specifier: ^25.0.1
         version: 25.0.1
